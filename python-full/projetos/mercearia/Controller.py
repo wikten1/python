@@ -44,6 +44,7 @@ class ControllerCategoria:
             if len(cat1) == 0:
                 x = list(map(lambda x: Categoria(categoriaAlterada) if(x.categoria == categoriaAlterar) else(x) ,x))
                 print("A alteração foi efetuada com sucesso!")
+                #TODO: alterar a categoria também do estoque
             else:
                 print('A categoria para qual deseja alterar já existe!')
             
@@ -53,4 +54,55 @@ class ControllerCategoria:
         with open('catagoria.txt', 'w') as arq:
             for i in x:
                 arq.writelines(i.categoria)
+                arq.writelines('\n')
+                
+    def removerCategoria(self, categoriaRemover):
+        x = DaoCategoria.ler()
+        cat = list(filter(lambda x: x.categoria == categoriaRemover, x))
+        
+        if len(cat) <= 0:
+            print('A categiria que deseja remover não existe!')
+        else:
+            for i in range(len(x)):
+                if x[i].categoria == categoriaRemover:
+                    del x[i]
+                    break
+            print('Categoria removida com sucesso')
+        #TODO: colocar sem categoria no estoque
+        with open('categoria.txt', 'w') as arq:
+            for i in x:
+                arq.writelines(i.categoria)
+                arq.writelines('\n')
+
+class ControllerEstoque:
+    def cadastrarProduto(self, nome, preco, categoria, quantidade):
+        x = DaoEstoque.ler()
+        y = DaoCategoria.ler()
+        h = list(filter(lambda x : x.categoria == categoria, y))
+        est == list(filter(lambda x: x.produto.nome == nome, x))
+        
+        if len(h) > 0:
+            if len(est) == 0:
+                produto = Produtos(nome, preco, categoria)
+                DaoEstoque.salvar(produto, quantidade)
+                print('Produto cadastrado com sucesso')
+            else:
+                print('Produto já existe em estoque')
+        else:
+            print('Categoria inexistente')
+            
+    def removerProduto(self, nome):
+        x = DaoEstoque.ler()
+        est = list(filter(lambda x: x.produto.nome == nome, x))
+        if len(est) > 0:
+            for i in range(len(x)):
+                if x[i].produto.nome == nome:
+                    del x[i]
+                    break
+            print('produto foi removido com sucesso!')    
+        else:
+            print('O produto que deseja remover não existe!')
+        with open('estoque.txt', 'w') as arq:
+            for i in x:
+                arq.writelines(i.produto.nome + "|" + i.produto.preco + "|" + i.produto.categoria + "|" + str(i.quantidade))
                 arq.writelines('\n')
