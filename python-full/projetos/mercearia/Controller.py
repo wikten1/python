@@ -128,4 +128,20 @@ def alterarProduto(self, nomeAlterar, novoNome, novoPreco,novaCategoria, novaQua
             for i in x:
                 arq.writelines(i.produto.nome + "|" + i.produto.preco + "|" +  i.produto.categoria + "|" + str(i.quantidade))
                 arq.writelines('\n')
+                
+def mostrarEstoque(self):
+        estoque = DaoEstoque.ler()
+        if len(estoque) == 0:
+            print('Estoque vazio')
+        else:
+            print("==========Produtos==========")
+            for i in estoque:
+                print(f"Nome: {i.produto.nome}\n"
+                      f"Preco: {i.produto.preco}\n"
+                      f"Categoria: {i.produto.categoria}\n"
+                      f"Quantidade: {i.quantidade}"
+
+                )
+                print("--------------------")
+
         
