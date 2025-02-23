@@ -41,6 +41,7 @@ class DaoVenda:
             vend.append(Venda(Produtos(i[0], i[1], i[2]), i[3], i[4], i[5], i[6]))
         return vend
 
+
 class DaoEstoque:
     @classmethod
     def salvar(cls, produto: Produtos, quantidade):
@@ -84,6 +85,8 @@ class DaoFornecedor:
 
         return forn
 
+
+
 class DaoPessoa:
     @classmethod
     def salvar(cls, pessoas: Pessoa):
@@ -105,6 +108,7 @@ class DaoPessoa:
             clientes.append(Pessoa(i[0], i[1], i[2], i[3], i[4]))
 
         return clientes
+
 
 class DaoFuncionario:
     @classmethod

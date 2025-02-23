@@ -1,4 +1,2 @@
 Frutas
 Verduras
-Legumes
-Frios
