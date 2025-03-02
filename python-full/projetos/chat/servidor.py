@@ -33,4 +33,4 @@ while True:
         salas[sala] = []
     salas[sala].append(client)
     print(f'{nome} se conectou na sala {sala}! INFO {addr}')
-    broadcast(sala, f'{nome}: Entrou na sala!')
+    broadcast(sala, f'{nome}: Entrou na sala!\n')
