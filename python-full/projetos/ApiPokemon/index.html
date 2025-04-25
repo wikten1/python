@@ -19,26 +19,29 @@
   </div>
 
   <script>
-    $.ajax({
-      url: "https://pokeapi.co/api/v2/pokemon/1",
-      method: 'get',
-      async: false,
-      success: function (resposta) {
-        let linha = document.getElementById("linha")
-        let conteudo = '<div class="card" style="width: 18rem;">\
-                          <img src="'+ resposta['sprites']['other']['dream_world']['front_default'] + '" class="card-img-top" alt="...">\
-                          <div class="card-body">\
-                            <h5 class="card-title">'+ resposta['forms'][0]['name'] + '</h5>\
-                          </div>\
-                        </div>'
+    for (var i = 1; i < 20; i++) {
+      $.ajax({
+        url: "https://pokeapi.co/api/v2/pokemon/" + i,
+        method: 'get',
+        async: false,
+        success: function (resposta) {
+          let linha = document.getElementById("linha")
+          let conteudo = '<div class="card" style="width: 18rem;">\
+                            <img src="'+ resposta['sprites']['other']['dream_world']['front_default'] + '" class="card-img-top" alt="...">\
+                            <div class="card-body">\
+                              <h5 class="card-title">'+ resposta['forms'][0]['name'] + '</h5>\
+                              <a class="btn btn-success">Ver mais</a>\
+                            </div>\
+                          </div>'
 
-        linha.innerHTML = conteudo
+          linha.innerHTML += conteudo
 
 
-        console.log(resposta['sprites']['other']['dream_world']['front_default'])
-        console.log(resposta['forms'][0]['name'])
-      },
-    })
+          console.log(resposta['sprites']['other']['dream_world']['front_default'])
+          console.log(resposta['forms'][0]['name'])
+        },
+      })
+    }
   </script>
 </body>
 
