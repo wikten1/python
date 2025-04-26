@@ -2,7 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def cadastro(request):
-    return HttpResponse('teste')
+    return render(request, 'cadastro/index.html')
 
-def auth(request):
-    return HttpResponse("Você está na autenticação")

@@ -3,6 +3,5 @@ from . import views
 
 urlpatterns = [
     path('cadastro', views.cadastro),
-    path('', views.auth)
     
 ]
