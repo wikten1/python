@@ -1,9 +1,22 @@
-{% if x == 0 %}
-  {% for i in pessoas %}
-  <h1>Nome: {{i.nome}}</h1>
-  <h1>Idade: {{i.idade}}</h1>
-  <h1>Profissão: {{i.profissao}}</h1>
+{% extends "base.html" %}
+{% load static %}
 
-  <hr>
-  {% endfor %}
-{% endif %}
+{% block 'titulo' %} Meu site {% endblock %}
+
+{%block 'head'%}
+
+<link rel="stylesheet" href="{% static 'css/css.css' %}"> 
+
+{%endblock%}
+
+{% block 'conteudo'%}
+
+<form method="POST" action="{% url 'valida_formulario' %}">{% csrf_token %}
+  <input type="text" placeholder="Nome..." name="nome">
+  <input type="email" placeholder="email..." name="email">
+  <input type="submit">
+
+
+</form>
+
+{% endblock%}

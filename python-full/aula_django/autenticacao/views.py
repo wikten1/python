@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from aula_django.settings import BASE_DIR
-import os
+import json
+
 
 def cadastro(request):
-    print(BASE_DIR)
-    pessoa = [{'nome': 'Wikten Alves', 'idade': '26', 'profissao': 'Programador'}, {'nome': 'Marcos sampaio', 'idade': '21', 'profissao': 'Escritor'}]
+    erro = request.GET.get('erro')
     
-    return render(request, 'cadastro/index.html', {'pessoas': pessoa, 'x': 0})
+    return render(request, 'cadastro/index.html', {'erro': erro})
 
+def valida_formulario(request):
+    nome = request.POST.get('nome')
+    email = request.POST.get('email')
+    return HttpResponse(json.dumps({'nome': nome, 'email': email}))
