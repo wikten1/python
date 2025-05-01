@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
+from .models import Cargos
 from .models import Pessoa
 
 def cadastro(request):
@@ -17,8 +18,11 @@ def cadastro(request):
         return HttpResponse('Você foi cadastrado!')
     
 def listar(request):
-    pessoa = Pessoa.objects.filter(nome = 'marcos')[0]
-    pessoa.delete()
+    cargo = Cargos.objects.get(id = 2)
+    
+    pessoa = Pessoa.objects.get(id = 16)
+    pessoa.cargo = cargo
+    pessoa.save()
     
     pessoas = Pessoa.objects.all()
     return render(request, 'listar/listar.html', {'pessoa': pessoas})
