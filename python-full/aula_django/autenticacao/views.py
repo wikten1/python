@@ -18,11 +18,9 @@ def cadastro(request):
         return HttpResponse('Você foi cadastrado!')
     
 def listar(request):
-    cargo = Cargos.objects.get(id = 2)
-    
-    pessoa = Pessoa.objects.get(id = 16)
-    pessoa.cargo = cargo
-    pessoa.save()
+    pessoa = Pessoa.objects.get(id = 12)
+    cargo = pessoa.objects.filter(pessoa = pessoa)
+    print(cargo)
     
     pessoas = Pessoa.objects.all()
     return render(request, 'listar/listar.html', {'pessoa': pessoas})
